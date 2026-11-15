@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>আমার পোর্টফোলিও</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mu:#6b6b64;--card:#fff;--ac:#0f766e;--bd:#e4e4dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141412;--fg:#f1f1ec;--mu:#a0a099;--card:#1f1f1c;--ac:#2dd4bf;--bd:#33332f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141412;--fg:#f1f1ec;--mu:#a0a099;--card:#1f1f1c;--ac:#2dd4bf;--bd:#33332f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Hind Siliguri',system-ui,sans-serif;line-height:1.7}
+main{max-width:860px;margin:0 auto;padding:24px 20px 90px}
+.hero{padding:56px 0 24px}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);margin:0;line-height:1.2}
+.hero .t{color:var(--ac);font-size:1.25rem;font-weight:600;margin:6px 0 12px}
+.hero .b{color:var(--mu);font-size:1.1rem;max-width:620px}
+h2{font-size:1.3rem;margin:40px 0 12px;border-bottom:2px solid var(--bd);padding-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:2px 14px;display:inline-flex;gap:6px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;position:relative}
+.card h3{margin:0 0 4px;font-size:1.1rem}.card p{margin:0 0 8px;color:var(--mu)}
+a{color:var(--ac)}
+.x{border:0;background:#dc2626;color:#fff;border-radius:99px;width:22px;height:22px;cursor:pointer;line-height:1;font-size:14px}
+.card .x{position:absolute;top:8px;right:8px}
+button.b{background:var(--ac);color:var(--bg);border:0;border-radius:10px;padding:8px 14px;font:inherit;cursor:pointer}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--bd);border-radius:10px;padding:8px 14px;font:inherit;cursor:pointer}
+[contenteditable]{outline:1px dashed var(--ac);outline-offset:2px;min-width:30px;border-radius:4px}
+#lock{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-size:18px;opacity:.6}
+#bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:8px;align-items:center;z-index:5}
+#bar select{font:inherit;padding:6px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--fg);max-width:170px}
+#mod{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:9}
+#mod div{background:var(--card);padding:22px;border-radius:14px;width:min(320px,90%)}
+#mod input{width:100%;font:inherit;padding:10px;margin:10px 0;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--fg)}
+.err{color:#dc2626;min-height:1.4em;margin:0}
+#toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(14px + env(safe-area-inset-top,0px));background:var(--fg);color:var(--bg);padding:8px 16px;border-radius:99px;z-index:20}
+</style>
+</head>
+<body>
+<script id="d" type="application/json">{}</script>
+<div id="app"></div>
+<script>
+const HASH="beead79933cfffcaf1d65f4b67aa8d7e4bd0fce68c571d882b11a7ffb5d1199a";
+const D0={name:"আপনার নাম",title:"ওয়েব ডেভেলপার ও ডিজাইনার",bio:"আমি সুন্দর ও ব্যবহারযোগ্য ডিজিটাল অভিজ্ঞতা তৈরি করি। এখানে আমার কাজ ও পরিচয় তুলে ধরেছি।",about:"এখানে আপনার সম্পর্কে বিস্তারিত লিখুন: আপনার শিক্ষা, অভিজ্ঞতা, আগ্রহ ও লক্ষ্য।",skills:["HTML","CSS","JavaScript","UI ডিজাইন"],projects:[{t:"প্রজেক্ট ১",d:"প্রজেক্টের সংক্ষিপ্ত বিবরণ লিখুন।",l:""},{t:"প্রজেক্ট ২",d:"প্রজেক্টের সংক্ষিপ্ত বিবরণ লিখুন।",l:""}],email:"you@example.com",phone:"",social:""};
+let S;try{S=JSON.parse(document.getElementById('d').textContent)}catch(e){}
+if(!S||!S.name)S=JSON.parse(JSON.stringify(D0));
+let edit=false,CODE='';
+const app=document.getElementById('app');
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const ed=(t,c,o,k)=>{const e=h(t,c,o[k]);if(edit){e.contentEditable='true';e.oninput=()=>{o[k]=e.innerText}}return e};
+function toast(m){const t=h('div',null,m);t.id='toast';document.body.append(t);setTimeout(()=>t.remove(),2600)}
+function bks(){try{return JSON.parse(localStorage.getItem('pf_bk')||'[]')}catch(e){return[]}}
+function backup(){try{const b=bks();b.unshift({t:new Date().toLocaleString('bn-BD'),s:S});localStorage.setItem('pf_bk',JSON.stringify(b.slice(0,8)))}catch(e){}}
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function render(){
+ app.innerHTML='';
+ const m=h('main');
+ const hero=h('section','hero');
+ hero.append(ed('h1','',S,'name'),ed('div','t',S,'title'),ed('div','b',S,'bio'));
+ m.append(hero);
+ m.append(h('h2',null,'আমার সম্পর্কে'));
+ m.append(ed('p','',S,'about'));
+ m.append(h('h2',null,'দক্ষতা'));
+ const ch=h('div','chips');
+ S.skills.forEach((s,i)=>{const c=h('span','chip');const sp=h('span',null,s);if(edit){sp.contentEditable='true';sp.oninput=()=>{S.skills[i]=sp.innerText}}c.append(sp);if(edit){const x=h('button','x','×');x.onclick=()=>{S.skills.splice(i,1);render()};c.append(x)}ch.append(c)});
+ if(edit){const a=h('button','g','+ স্কিল');a.onclick=()=>{S.skills.push('নতুন স্কিল');render()};ch.append(a)}
+ m.append(ch);
+ m.append(h('h2',null,'প্রজেক্ট'));
+ const g=h('div','grid');
+ S.projects.forEach((p,i)=>{const c=h('div','card');c.append(ed('h3','',p,'t'),ed('p','',p,'d'));
+  if(edit){c.append(h('small',null,'লিংক:'),ed('div','',p,'l'));const x=h('button','x','×');x.onclick=()=>{S.projects.splice(i,1);render()};c.append(x)}
+  else if(p.l){const a=h('a',null,'দেখুন →');a.href=/^https?:\/\//.test(p.l)?p.l:'#';a.target='_blank';a.rel='noopener';c.append(a)}
+  g.append(c)});
+ if(edit){const a=h('button','g','+ প্রজেক্ট');a.onclick=()=>{S.projects.push({t:'নতুন প্রজেক্ট',d:'বিবরণ',l:''});render()};g.append(a)}
+ m.append(g);
+ m.append(h('h2',null,'যোগাযোগ'));
+ const ct=h('div');
+ [['ইমেইল','email'],['ফোন','phone'],['সোশ্যাল/ওয়েবসাইট','social']].forEach(([l,k])=>{if(edit||S[k]){const r=h('p');r.append(h('b',null,l+': '),ed('span','',S,k));ct.append(r)}});
+ m.append(ct);
+ app.append(m);
+ if(edit){
+  const b=h('div');b.id='bar';
+  const mk=(t,c,f)=>{const x=h('button',c,t);x.onclick=f;b.append(x);return x};
+  mk('💾 সেভ করুন','b',save);
+  mk('⬇ ব্যাকআপ ডাউনলোড','g',dl);
+  mk('⬆ ফাইল থেকে রিস্টোর','g',()=>{const f=document.createElement('input');f.type='file';f.accept='.json';f.onchange=async()=>{try{const j=JSON.parse(await f.files[0].text());if(!j.name)throw 0;backup();S=j;render();toast('রিস্টোর হয়েছে — সেভ করতে ভুলবেন না')}catch(e){toast('ফাইলটি সঠিক নয়')}};f.click()});
+  const bl=bks();
+  if(bl.length){const s=document.createElement('select');bl.forEach((x,i)=>{const o=document.createElement('option');o.value=i;o.textContent=x.t;s.append(o)});b.append(s);mk('↩ রিস্টোর','g',()=>{backup();S=JSON.parse(JSON.stringify(bl[s.value].s));render();toast('রিস্টোর হয়েছে')})}
+  mk('বের হন','g',()=>{edit=false;render()});
+  app.append(b);
+ }else{
+  const l=h('button',null,'🔒');l.id='lock';l.title='অ্যাডমিন';l.onclick=login;app.append(l);
+ }
+}
+function login(){
+ const m=h('div');m.id='mod';
+ const bx=h('div');
+ const i=document.createElement('input');i.type='password';i.placeholder='সিকিউরিটি কোড';i.autocomplete='off';
+ const er=h('p','err');
+ const go=h('button','b','লগইন');
+ const cl=h('button','g','বাতিল');cl.style.marginLeft='8px';
+ const run=async()=>{if(await sha(i.value.trim())===HASH){CODE=i.value.trim();edit=true;render()}else{er.textContent='কোডটি সঠিক নয়';i.value=''}};
+ go.onclick=run;cl.onclick=()=>m.remove();i.onkeydown=e=>{if(e.key==='Enter')run()};
+ bx.append(h('b',null,'অ্যাডমিন লগইন'),i,er,go,cl);m.append(bx);app.append(m);i.focus();
+}
+function down(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function dl(){down('portfolio-backup-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(S,null,2),'application/json');toast('ব্যাকআপ ডাউনলোড হয়েছে')}
+async function save(){
+ backup();
+ try{
+  const r=await fetch('save.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:CODE,data:S})});
+  const j=await r.json();
+  if(j.ok){toast('সার্ভারে সেভ হয়েছে ✔');return}
+  if(j.error==='code'){toast('সিকিউরিটি কোড সঠিক নয়');return}
+  if(j.error!=='bad'&&j.error!=='size'){throw 0}
+  toast('সেভ ব্যর্থ: '+j.error);return;
+ }catch(e){}
+ const c=document.documentElement.cloneNode(true);
+ c.querySelector('#app').innerHTML='';
+ c.querySelector('#d').textContent=JSON.stringify(S).replace(/</g,'\\u003c');
+ down('index.html','<!doctype html>\n'+c.outerHTML,'text/html');
+ toast('স্ট্যাটিক হোস্টিং: নতুন index.html ডাউনলোড হয়েছে, সার্ভারে আগেরটির জায়গায় আপলোড করুন');
+}
+render();
+fetch('data.json?'+Date.now()).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.name&&!edit){S=j;render()}}).catch(()=>{});
+</script>
+</body>
+</html>
